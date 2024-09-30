@@ -1,18 +1,23 @@
 "use client";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
 
-  const { status } = useSession();
+  const router = useRouter();
+  const { status, data: session } = useSession();
 
   const [email, setEmail] = useState("test@example.com");
   const [password, setPassword] = useState("password123");
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log({ status: status })
-  }, [status]);
+    console.log({ status: status, session })
+    if (status === "authenticated") {
+      router.push("/");
+    }
+  }, [status, session]);
 
   const handleSignIn = async () => {
 
@@ -28,13 +33,11 @@ export default function LoginPage() {
       setError(result.error);
     } else {
       // redirect to loggedPage
+      router.push("/");
     }
   };
 
-  const handleSignOut = async () => {
-    await signOut({ redirect: false });
-    // router.push("/login");
-  };
+ 
 
 
   return (
@@ -42,13 +45,7 @@ export default function LoginPage() {
 
       {status === "loading" && <p>Loading...</p>}
 
-      {status === "authenticated" && (
-        <div>
-          <p>User Logged</p>
-          <button onClick={handleSignOut}>Sign Out</button>
-        </div>
 
-      )}
 
       {status === "unauthenticated" && (
         <div>
