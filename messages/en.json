@@ -1,0 +1,11 @@
+{
+    "welcome": "Welcome to my app!",
+    "home": "Home from key",
+    "about": "About",
+    "HomePage": {
+        "title": "Home Page Translated",
+        "config": {
+            "role": "admin"
+        }
+    }
+}
