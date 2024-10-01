@@ -2,6 +2,9 @@
     "welcome": "Welcome to my app!",
     "home": "Home from key",
     "about": "About",
+    "userLogged": "User logged",
+    "buttonSignIn": "Sign In",
+    "buttonSignOut": "Sign out",
     "HomePage": {
         "title": "Home Page Translated",
         "config": {

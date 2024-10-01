@@ -1,8 +1,17 @@
 "use client";
-import { signIn, signOut, useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { signIn, useSession } from "next-auth/react";
 
+import Cookies from "js-cookie";
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  language: string;
+  tokenJWT: string;
+}
 export default function LoginPage() {
 
   const router = useRouter();
@@ -14,8 +23,12 @@ export default function LoginPage() {
 
   useEffect(() => {
     console.log({ status: status, session })
-    if (status === "authenticated") {
+    if (status === "authenticated") {  
+      const { user }: {user: User} = session
+      // set language 
+      Cookies.set('locale', user.language);
       router.push("/");
+      router.refresh()
     }
   }, [status, session]);
 

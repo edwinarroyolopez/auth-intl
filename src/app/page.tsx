@@ -24,9 +24,10 @@ export default function Home() {
       <h3>{intl('home')}</h3>
       {status === "authenticated" && (
         <div>
-          <p>User Logged</p>
+          <p>{intl('userLogged')}</p>
           <p>{session.user.email}</p>
-          <button onClick={handleSignOut}>Sign Out</button>
+          <p>{session.user.language}</p>
+          <button onClick={handleSignOut}>{intl('buttonSignOut')}</button>
         </div>
 
       )}

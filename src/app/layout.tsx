@@ -1,5 +1,6 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
+
 import SessionProviderRoot from './providerSession';
 
 export default async function RootLayout({
